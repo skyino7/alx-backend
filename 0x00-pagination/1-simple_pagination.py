@@ -13,7 +13,7 @@ def index_range(page, page_size):
     those particular pagination parameters.
     """
     start = (page - 1) * page_size
-    end = start * page_size
+    end = start + page_size
     return start, end
 
 
@@ -49,8 +49,10 @@ class Server:
         num_records = len(dataset)
         total_pages = math.ceil(num_records / page_size)
 
+        start, end = index_range(page, page_size)
+
         if page > total_pages:
             return []
 
-        start, end = index_range(page, page_size)
-        return dataset[start:end+1]
+        return dataset[start:min(end, num_records)]
+
