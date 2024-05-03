@@ -55,4 +55,3 @@ class Server:
             return []
 
         return dataset[start:min(end, num_records)]
-
