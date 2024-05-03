@@ -63,4 +63,3 @@ class Server:
             'page_size': len(data),
             'next_index': min(index + len(data), num_records)
         }
-
