@@ -27,9 +27,10 @@ users = {
 def get_user():
     """Get user"""
     login_as = request.args.get('login_as')
-    if login_as:
-        return users.get(int(login_as))
+    if login_as is not None and int(login_as) in users:
+        return users.get[int(login_as)]
     return None
+
 
 def before_request():
     """Before request"""
@@ -40,11 +41,9 @@ def before_request():
 @babel.localeselector
 def get_locale():
     """Get locale"""
-    user = g.user('user', None)
-    if user:
-        locale = user.get('locale')
-        if locale in app.config["LANGUAGES"]:
-            return user['locale']
+    locale = request.args.get('locale')
+    if locale and locale in app.config["LANGUAGES"]:
+        return locale
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
