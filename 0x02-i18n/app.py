@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Define a get_timezone function
-and use the babel.timezoneselector
-decorator.
+Based on the inferred time zone,
+display the current time on the home
+page in the default format
 """
 
 from flask import Flask, render_template, request, g
@@ -72,7 +72,7 @@ def get_locale() -> str:
 def index() -> str:
     """Index page"""
     current_time = format_datetime(datetime.now())
-    return render_template("7-index.html", current_time=current_time)
+    return render_template("index.html", current_time=current_time)
 
 
 if __name__ == "__main__":
