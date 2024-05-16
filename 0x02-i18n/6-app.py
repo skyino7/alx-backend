@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Parametrize templates"""
+"""
+Change your get_locale function
+to use a user’s preferred local
+if it is supported.
+"""
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
@@ -33,7 +37,7 @@ def get_user() -> dict:
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """Before request"""
     user = get_user()
     g.user = user
@@ -51,7 +55,7 @@ def get_locale() -> str:
 @app.route("/")
 def index() -> str:
     """Index page"""
-    return render_template("5-index.html")
+    return render_template("6-index.html")
 
 
 if __name__ == "__main__":
