@@ -48,7 +48,7 @@ def get_user() -> dict:
     """Get user"""
     login_as = request.args.get('login_as')
     if login_as is not None and int(login_as) in users:
-        return users.get[int(login_as)]
+        return users[int(login_as)]
     return None
 
 
